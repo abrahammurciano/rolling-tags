@@ -52,6 +52,16 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 			),
 			inline=False,
 		)
+		
+		embed.add_field(
+			name="Note:",
+			value=(
+				"There is currently no way for the bot to change the nickname of the"
+				" server owner, so they are the only person who will remain unaffected"
+				" by the bot."
+			),
+			inline=False,
+		)
 
 		embed.set_footer(text=self.get_ending_note())
 		await self.get_destination().send(embed=embed)
