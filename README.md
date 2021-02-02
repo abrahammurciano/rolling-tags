@@ -4,6 +4,8 @@ Add tags to nicknames based on their roles!
 
 Rolling Tags Discord Bot will allow you to easily assign tags next to the usernames of members of your server based on what roles they are in.
 
+[![Invite to server](https://i.imgur.com/z0ywl9d.png)](https://discord.com/api/oauth2/authorize?client_id=806118748573794385&permissions=134217728&scope=bot)
+
 ## Example
 
 ![Example](https://i.imgur.com/zpnIsnQ.png)
