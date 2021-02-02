@@ -2,6 +2,12 @@
 
 Add tags to nicknames based on their roles!
 
+Rolling Tags Discord Bot will allow you to easily assign tags next to the usernames of members of your server based on what roles they are in.
+
+## Example
+
+![Example](https://i.imgur.com/zpnIsnQ.png)
+
 ## Setting tags to roles
 
 To add a tag to a role, rename the role to "Role Name | _tag_", and everyone with that role will have that _tag_ appended to their name.
