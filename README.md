@@ -26,3 +26,7 @@ Users belonging to multiple roles which have tags will have all the relevant tag
 ## Changing Roles/Nicknames
 
 Whenever a member's nickname is changed or their roles are changed, the bot automatically reapplies tags.
+
+## Known Issues
+
+There is no way for the bot to have permission to change the nickname of the owner of a server, so they're the only person who the bot will not affect.
