@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
+   version="1.1"
+   id="svg42"
+   sodipodi:docname="rolling-tags.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07, custom)">
+  <metadata
+     id="metadata48">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs46" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1872"
+     inkscape:window-height="1032"
+     id="namedview44"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:zoom="1.6171875"
+     inkscape:cx="261.56522"
+     inkscape:cy="256"
+     inkscape:window-x="48"
+     inkscape:window-y="20"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Icons"
+     inkscape:document-rotation="0" />
+  <g
+     id="BULINE">
+    <circle
+       cx="256"
+       cy="256"
+       fill="#fcc8bc"
+       r="256"
+       id="circle2" />
+  </g>
+  <g
+     id="Icons">
+    <path
+       d="M 435.00141,197.81358 418.15498,91.497298 A 25.186137,25.186137 0 0 0 401.29661,74.627 L 294.98033,57.780564 a 25.233861,25.233861 0 0 0 -25.0549,6.323379 L 36.795579,297.17414 a 25.198068,25.198068 0 0 0 0,35.64954 L 159.9583,455.9864 a 25.198068,25.198068 0 0 0 35.64954,0 l 233.0702,-233.0702 a 25.233861,25.233861 0 0 0 6.32337,-25.10262 z m -79.93705,-60.14369 a 21.940932,21.940932 0 1 1 31.02035,0 21.952862,21.952862 0 0 1 -30.97263,0 z"
+       fill="#db1b1b"
+       id="path7"
+       style="stroke-width:1.19309" />
+    <path
+       d="M 190.40596,456.80963 67.243245,333.64691 a 25.209999,25.209999 0 0 1 0,-35.64953 L 300.31344,64.927176 a 25.054897,25.054897 0 0 1 7.24206,-5.046773 l -12.46779,-1.98053 a 25.233861,25.233861 0 0 0 -25.0549,6.323379 L 36.914888,297.29345 a 25.198068,25.198068 0 0 0 0,35.64954 L 160.0776,456.10571 a 25.209999,25.209999 0 0 0 32.52365,2.64866 22.274997,22.274997 0 0 1 -2.19529,-1.94474 z"
+       fill="#c41c1c"
+       id="path9"
+       style="stroke-width:1.19309" />
+    <circle
+       cx="378.4924"
+       cy="227.17773"
+       fill="#f55b4b"
+       r="10.7"
+       id="circle13" />
+    <circle
+       cx="396.8924"
+       cy="208.76773"
+       fill="#f55b4b"
+       r="8.8299999"
+       id="circle15" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:174.84px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:4.371"
+       x="-185.56351"
+       y="410.88022"
+       id="text54"
+       transform="rotate(-44.777764)"><tspan
+         sodipodi:role="line"
+         id="tspan52"
+         x="-185.56351"
+         y="410.88022"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Montague;-inkscape-font-specification:Montague;fill:#f9f9f9;stroke-width:4.371">ROLE</tspan></text>
+  </g>
+</svg>
