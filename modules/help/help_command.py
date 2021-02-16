@@ -22,6 +22,15 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 		)
 
 		embed.add_field(
+			name="Note:",
+			value=(
+				"My role must be at the very top for me to be able to do my job"
+				" properly."
+			),
+			inline=False,
+		)
+
+		embed.add_field(
 			name="Setting tags to roles",
 			value=(
 				'To add a tag to a role, rename the role to "Role Name | *tag*", and'
@@ -52,7 +61,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 			),
 			inline=False,
 		)
-		
+
 		embed.add_field(
 			name="Note:",
 			value=(
