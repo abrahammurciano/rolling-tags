@@ -47,5 +47,5 @@ class Member:
 		new_nick = self.base_name + self.tags_str()
 		try:
 			await self.inner_member.edit(nick=new_nick[:32])
-		except discord.errors.Forbidden:
-			pass
+		except discord.errors.Forbidden as err:
+			print(err)
