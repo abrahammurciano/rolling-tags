@@ -15,7 +15,7 @@ class Member:
 		self.name_sep = name_sep
 		self.tag_sep = tag_sep
 		self.base_name = (
-			member.nick.rsplit(name_sep, 1)[0].strip()
+			member.nick.split(name_sep, 1)[1].strip()
 			if member.nick is not None
 			else member.display_name
 		)
@@ -24,9 +24,9 @@ class Member:
 		"""Gets a list of tags the user currently has in their nickname"""
 		if self.inner_member.nick is None:
 			return []
-		split = self.inner_member.nick.split(self.base_name + self.name_sep)
+		split = self.inner_member.nick.split(self.name_sep + self.base_name)
 		if len(split) > 1:
-			return split[1].split(self.tag_sep)
+			return split[0].split(self.tag_sep)
 		return []
 
 	def tags(self) -> List[str]:
@@ -40,7 +40,7 @@ class Member:
 	def tags_str(self) -> str:
 		"""Gets a string to append to a member's name to represent their tags"""
 		tags = self.tags()
-		return (self.name_sep + self.tag_sep.join(tags)) if tags else ""
+		return (self.tag_sep.join(tags) + self.name_sep) if tags else ""
 
 	async def apply_tags(self):
 		"""Applies all the tags of the member's roles to their nickname"""
