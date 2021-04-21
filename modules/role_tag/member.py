@@ -15,7 +15,7 @@ class Member:
 		self.name_sep = name_sep
 		self.tag_sep = tag_sep
 		self.base_name = (
-			member.nick.split(name_sep, 1)[1].strip()
+			member.nick.split(name_sep, 1)[-1].strip()
 			if member.nick is not None
 			else member.display_name
 		)
