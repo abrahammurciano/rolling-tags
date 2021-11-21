@@ -20,9 +20,19 @@ def main():
 	async def on_ready():
 		"""When discord is connected"""
 		print(f"{client.user.name} has connected to Discord!")
+		await set_presence()
+
+	@client.event
+	async def on_guild_join(guild):
+		"""When the bot joins a guild"""
+		print(f"{client.user.name} has joined {guild.name}")
+		await set_presence()
+
+	async def set_presence():
 		await client.change_presence(
 			activity=discord.Activity(
-				type=discord.ActivityType.listening, name="rt.help"
+				type=discord.ActivityType.listening,
+				name=f"rt.help in {len(client.guilds)} servers.",
 			)
 		)
 

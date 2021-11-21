@@ -1,5 +1,4 @@
 import sys
-import utils.utils as utils
 from discord.ext import commands
 from modules.error.error_handler import ErrorHandler
 from modules.error.error_logger import ErrorLogger
