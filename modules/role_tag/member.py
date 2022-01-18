@@ -1,6 +1,9 @@
 from modules.role_tag.role import Role
 import discord
 from typing import List
+import logging
+
+logger = logging.getLogger(f"rolling_tags.{__name__}")
 
 
 class Member:
@@ -43,9 +46,14 @@ class Member:
 		return (self.name_sep + self.tag_sep.join(tags)) if tags else ""
 
 	async def apply_tags(self):
-		"""Applies all the tags of the member's roles to their nickname"""
+		"""Applies all the tags of the member's roles to their nickname."""
 		new_nick = self.base_name + self.tags_str()
+		old_nick = self.inner_member.display_name
 		try:
 			await self.inner_member.edit(nick=new_nick[:32])
+			logger.debug(f"Renamed {old_nick} to {new_nick}.")
 		except discord.errors.Forbidden as err:
-			print(err)
+			logger.warning(
+				f"Unable to rename {self.inner_member.display_name} to {new_nick} due"
+				" to missing permissions."
+			)

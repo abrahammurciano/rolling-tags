@@ -2,6 +2,24 @@ import os
 import discord
 import config
 from discord.ext import commands
+import logging
+from discord_lumberjack.handlers import DiscordChannelHandler
+from discord_lumberjack.message_creators import EmbedMessageCreator
+
+# Set up logging
+logger = logging.getLogger("rolling_tags")
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler())
+logger.addHandler(
+	DiscordChannelHandler(
+		config.token, config.debug_channel, logging.DEBUG, EmbedMessageCreator()
+	)
+)
+logger.addHandler(
+	DiscordChannelHandler(
+		config.token, config.error_channel, logging.ERROR, EmbedMessageCreator()
+	)
+)
 
 
 def main():
@@ -19,14 +37,19 @@ def main():
 	@client.event
 	async def on_ready():
 		"""When discord is connected"""
-		print(f"{client.user.name} has connected to Discord!")
+		logger.info(f"{client.user.name} has connected to Discord!")
 		await set_presence()
 
 	@client.event
-	async def on_guild_join(guild):
+	async def on_guild_join(guild: discord.Guild):
 		"""When the bot joins a guild"""
-		print(f"{client.user.name} has joined {guild.name}")
+		logger.info(f"{client.user.name} has joined {guild.name}")
 		await set_presence()
+
+	@client.event
+	async def on_error():
+		"""When an error occurs"""
+		logger.exception(f"An unexpected error has occurred.")
 
 	async def set_presence():
 		await client.change_presence(

@@ -1,6 +1,8 @@
 from discord.ext import commands
 import discord
-from discord.ext.commands.core import is_nsfw
+import logging
+
+logger = logging.getLogger(f"rolling_tags.{__name__}")
 
 
 class NewHelpCommand(commands.MinimalHelpCommand):
@@ -73,4 +75,5 @@ class NewHelpCommand(commands.MinimalHelpCommand):
 		)
 
 		embed.set_footer(text=self.get_ending_note())
+		logger.debug("Sending help...")
 		await self.get_destination().send(embed=embed)
