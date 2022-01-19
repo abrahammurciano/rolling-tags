@@ -55,7 +55,7 @@ def main():
 		await client.change_presence(
 			activity=discord.Activity(
 				type=discord.ActivityType.listening,
-				name=f"rt.help in {len(client.guilds)} servers.",
+				name=f"rt.help in {len(client.guilds)} servers. PUT MY ROLE ON TOP!",
 			)
 		)
 
