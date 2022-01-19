@@ -14,11 +14,22 @@ class RoleTagsCog(commands.Cog, name="Role Tags"):
 	@commands.Cog.listener()
 	async def on_member_update(self, before: discord.Member, after: discord.Member):
 		member = Member(after)
-		if member.current_tags() != member.tags():
-			logger.debug(
-				f"Member {after.display_name}'s nickname or roles was changed."
+		if member.current_tags() == member.tags():
+			return
+		changed_str = (
+			f'Name "{before.display_name}" changed to "{after.display_name}"'
+			if before.display_name == after.display_name
+			else (
+				f"Roles ({', '.join(r.name for r in before.roles)}) changed to"
+				f" ({', '.join(r.name for r in after.roles)})"
 			)
-			await member.apply_tags()
+		)
+
+		logger.debug(
+			f'Member "{after.display_name}" changed in guild "{after.guild.name}":'
+			f" {changed_str}"
+		)
+		await member.apply_tags()
 
 	@commands.Cog.listener()
 	async def on_guild_role_update(self, before: discord.Role, after: discord.Role):
