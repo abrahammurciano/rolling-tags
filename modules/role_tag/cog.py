@@ -13,6 +13,15 @@ class RoleTagsCog(commands.Cog, name="Role Tags"):
 
 	@commands.Cog.listener()
 	async def on_member_update(self, before: discord.Member, after: discord.Member):
+		# For testing purposes only. Remove in a while
+		if before.display_name != after.display_name and tuple(
+			r.id for r in before.roles
+		) != tuple(r.id for r in after.roles):
+			logger.error(
+				"Member nickname and roles changed at once! I thought this was"
+				" impossible!"
+			)
+
 		if before.display_name != after.display_name:
 			func = self.on_member_name_change
 		elif tuple(r.id for r in before.roles) != tuple(r.id for r in after.roles):
