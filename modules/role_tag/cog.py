@@ -36,7 +36,10 @@ class RoleTagsCog(commands.Cog, name="Role Tags"):
 		before_role = Role(before)
 		after_role = Role(after)
 		if before_role.tag != after_role.tag:
-			logger.debug(f"Role {before.name} was renamed to {after.name}.")
+			logger.debug(
+				f'Role "{before.name}" was renamed to "{after.name}" in guild'
+				f' "{after.guild.name}".'
+			)
 			for member in after.members:
 				await Member(member).apply_tags()
 
