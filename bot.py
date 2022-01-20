@@ -9,7 +9,6 @@ from discord_lumberjack.message_creators import EmbedMessageCreator
 # Set up logging
 logger = logging.getLogger("rolling_tags")
 logger.setLevel(logging.DEBUG)
-logger.addHandler(logging.StreamHandler())
 logger.addHandler(
 	DiscordChannelHandler(
 		config.token, config.debug_channel, logging.DEBUG, EmbedMessageCreator()
@@ -20,6 +19,8 @@ logger.addHandler(
 		config.token, config.error_channel, logging.ERROR, EmbedMessageCreator()
 	)
 )
+logger.addHandler(logging.StreamHandler())
+logging.getLogger().addHandler(logging.StreamHandler())
 
 
 def main():
