@@ -1,0 +1,6 @@
+# fly.toml file generated for rolling-tags on 2022-12-01T17:13:12+02:00
+
+app = "rolling-tags"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
