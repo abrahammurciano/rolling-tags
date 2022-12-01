@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import discord
 import rolling_tags.config as config
 from discord.ext import commands
@@ -31,9 +32,9 @@ def main():
     client = commands.Bot(config.prefix, intents=intents)  # bot command prefix
 
     # Get the modules of all cogs whose directory structure is modules/<module_name>/cog.py
-    for folder in os.listdir("modules"):
-        if os.path.exists(os.path.join("modules", folder, "cog.py")):
-            client.load_extension(f"modules.{folder}.cog")
+    for folder in (Path(__file__).parent / "modules").iterdir():
+        if (folder / "cog.py").is_file():
+            client.load_extension(f"{__package__}.modules.{folder.name}.cog")
 
     @client.event
     async def on_ready():
