@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rolling-tags"
-version = "1.0.0"
+version = "1.0.1"
 description = "Add tags to nicknames based on their roles! Rolling Tags Discord Bot will allow you to easily assign tags next to the usernames of members of your server based on what roles they are in."
 authors = ["Abraham Murciano <abraham.murciano@mobileye.com>"]
 license = "MIT"

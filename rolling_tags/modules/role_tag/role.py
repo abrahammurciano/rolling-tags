@@ -2,15 +2,17 @@ import discord
 
 
 class Role:
-	"""
-	Represents a role which may contain tags in the name
-	"""
+    """
+    Represents a role which may contain tags in the name
+    """
 
-	def __init__(self, role: discord.Role, sep: str = "|") -> None:
-		self.inner_role = role
-		self.sep = sep
-		split = self.inner_role.name.rsplit(sep, 1)
-		self.tag = split[1].strip().replace(" ", "-") if len(split) == 2 else None
+    __slots__ = ("inner_role", "sep", "tag")
 
-	def has_tag(self):
-		return self.tag is not None
+    def __init__(self, role: discord.Role, sep: str) -> None:
+        self.inner_role = role
+        self.sep = sep
+        split = self.inner_role.name.rsplit(sep, 1)
+        self.tag = split[1].strip().replace(" ", "-") if len(split) == 2 else None
+
+    def has_tag(self):
+        return self.tag is not None

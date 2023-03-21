@@ -1,30 +1,16 @@
-import os
 from pathlib import Path
 import discord
 import rolling_tags.config as config
 from discord.ext import commands
 import logging
-from discord_lumberjack.handlers import DiscordChannelHandler
-from discord_lumberjack.message_creators import EmbedMessageCreator
 
-# Set up logging
+from rolling_tags.setup_logger import setup_logger
+
 logger = logging.getLogger("rolling_tags")
-logger.setLevel(logging.DEBUG)
-logger.addHandler(
-    DiscordChannelHandler(
-        config.token, config.debug_channel, logging.DEBUG, EmbedMessageCreator()
-    )
-)
-logger.addHandler(
-    DiscordChannelHandler(
-        config.token, config.error_channel, logging.ERROR, EmbedMessageCreator()
-    )
-)
-logger.addHandler(logging.StreamHandler())
-logging.getLogger().addHandler(logging.StreamHandler())
 
 
 def main():
+    setup_logger(logger)
     # allows privledged intents for monitoring members joining, roles editing, and role assignments (has to be enabled for the bot in Discord dev)
     intents = discord.Intents.default()
     intents.members = True
@@ -51,7 +37,7 @@ def main():
     @client.event
     async def on_error():
         """When an error occurs"""
-        logger.exception(f"An unexpected error has occurred.")
+        logger.exception("An unexpected error has occurred.")
 
     async def set_presence():
         await client.change_presence(
