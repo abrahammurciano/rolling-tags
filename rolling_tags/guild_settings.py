@@ -47,15 +47,21 @@ class GuildSettings:
 
     @classmethod
     def _params_from_role_name(cls, role_name: str, bot_name: str) -> dict[str, str]:
-        return {
-            key: value
-            for key, value in (
-                param.split("=")
-                for param in shlex.split(role_name.removeprefix(bot_name))
-                if "=" in param
+        try:
+            return {
+                key: value
+                for key, value in (
+                    param.split("=")
+                    for param in shlex.split(role_name.removeprefix(bot_name))
+                    if "=" in param
+                )
+                if key in cls.__init__.__annotations__.keys() - {"return"}
+            }
+        except ValueError as e:
+            logger.warning(
+                f"Could not parse settings from role name {role_name!r} for bot {bot_name!r}: {e}"
             )
-            if key in cls.__init__.__annotations__.keys() - {"return"}
-        }
+            return {}
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, GuildSettings):
