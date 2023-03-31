@@ -1,4 +1,5 @@
 import logging
+from collections import defaultdict
 
 from discord import Activity, ActivityType, Client, Guild, Intents, Member, Role
 
@@ -15,7 +16,7 @@ class RollingTagsClient(Client):
     def __init__(self) -> None:
         intents = Intents.default()
         intents.members = True
-        self._guild_settings: dict[Guild, GuildSettings] = {}
+        self._guild_settings: dict[Guild, GuildSettings] = defaultdict(GuildSettings)
         super().__init__(intents=intents)
 
     def run(self, *args, **kwargs) -> None:
