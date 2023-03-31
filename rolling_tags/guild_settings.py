@@ -52,6 +52,7 @@ class GuildSettings:
             for key, value in (
                 param.split("=")
                 for param in shlex.split(role_name.removeprefix(bot_name))
+                if "=" in param
             )
             if key in cls.__init__.__annotations__.keys() - {"return"}
         }
