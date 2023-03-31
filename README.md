@@ -27,6 +27,15 @@ Users belonging to multiple roles which have tags will have all the relevant tag
 
 Whenever a member's nickname is changed or their roles are changed, the bot automatically reapplies tags.
 
+## Bot Configuration
+
+Customize the bot's behavior by appending `key=value` to the bot's main role's name, separating each key-value pair by a space. Use quotes to surround values that have spaces. For example to have Linus' nickname appear as `[#] Linus` you would change the rale `Rolling Tags` to `Rolling Tags fmt="[{t}] {n}"`. Or if you wanted to put a comma between each tag you would change the role to `Rolling Tags sep=,`.
+
+The following settings are supported.
+
+- `sep` - The separator between each tag. Defaults to a single space.
+- `fmt` - The format of users' names. `{n}` and `{t}` will be replaced with each user's name and their tags respectively. Defaults to `{n} | {t}`.
+
 ## Known Issues
 
 There is no way for the bot to have permission to change the nickname of the owner of a server, so they're the only person who the bot will not affect.
