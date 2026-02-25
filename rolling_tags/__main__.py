@@ -4,7 +4,7 @@ from rolling_tags.config import setup_logger, token
 from rolling_tags.rolling_tags_client import client
 
 
-def main():
+def main() -> None:
     setup_logger(logging.getLogger(__package__))
     client.run(token)
 

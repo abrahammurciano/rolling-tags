@@ -1,7 +1,8 @@
 import logging
 from collections import defaultdict
+from typing import Any, override
 
-from discord import Activity, ActivityType, Client, Guild, Intents, Member, Role
+from discord import Activity, ActivityType, Client, Guild, Intents, Member, Role, User
 
 from .guild_settings import GuildSettings
 from .member_tagger import MemberTagger
@@ -11,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 class RollingTagsClient(Client):
-    """The discord client for rolling tags"""
+    """The discord client for rolling tags."""
 
     def __init__(self) -> None:
         intents = Intents.default()
@@ -19,7 +20,8 @@ class RollingTagsClient(Client):
         self._guild_settings: dict[Guild, GuildSettings] = defaultdict(GuildSettings)
         super().__init__(intents=intents)
 
-    def run(self, *args, **kwargs) -> None:
+    @override
+    def run(self, *args: Any, **kwargs: Any) -> None:
         kwargs["log_handler"] = None
         super().run(*args, **kwargs)
 
@@ -33,7 +35,7 @@ class RollingTagsClient(Client):
         )
 
     async def on_ready(self) -> None:
-        """When discord is connected"""
+        """When discord is connected."""
         from .slash_commands import command_tree
 
         assert self.user is not None, "Client is not logged in"
@@ -45,14 +47,31 @@ class RollingTagsClient(Client):
         await command_tree.sync()
 
     async def on_guild_join(self, guild: Guild) -> None:
-        """When the bot joins a guild"""
+        """When the bot joins a guild."""
         assert self.user is not None, "Client is not logged in"
         logger.info(f"{self.user.name} has joined {guild.name}")
         await self._set_presence()
 
-    async def on_error(self, *args, **kwargs) -> None:
-        """When an error occurs"""
+    @override
+    async def on_error(self, *args: Any, **kwargs: Any) -> None:
+        """When an error occurs."""
         logger.exception(f"An unexpected error has occurred: {args} {kwargs}")
+
+    async def on_user_update(self, before: User, after: User) -> None:
+        old_name = before.global_name or before.name
+        new_name = after.global_name or after.name
+        if old_name == new_name:
+            return
+        logger.debug(f"User global name changed: {old_name!r} -> {new_name!r}")
+        for guild in self.guilds:
+            if (member := guild.get_member(after.id)) is None:
+                continue
+            await MemberTagger(
+                member,
+                self._guild_settings[guild],
+                old_name=old_name,
+                new_name=new_name,
+            ).update()
 
     async def on_member_update(self, before: Member, after: Member) -> None:
         if before.display_name == after.display_name and before.roles == after.roles:

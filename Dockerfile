@@ -1,7 +1,5 @@
-FROM python:3.11
-RUN pip install poetry
+FROM ghcr.io/astral-sh/uv:python3.14-alpine
 WORKDIR /code
 COPY . /code/
-RUN poetry config virtualenvs.create false
-RUN poetry install --only main --no-interaction --no-ansi
-CMD [ "python", "-m", "rolling_tags" ]
+RUN uv sync --frozen
+CMD ["uv", "run", "rolling-tags"]

@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 
 from discord import Colour, Embed, Interaction, app_commands
 
@@ -7,16 +7,16 @@ from .rolling_tags_client import client
 command_tree = app_commands.CommandTree(client)
 
 
-@command_tree.command(name="help")  # type: ignore
+@command_tree.command(name="help")
 @app_commands.rename(show="show_to_everyone")
-async def help_command(interaction: Interaction, show: bool = True):
+async def help_command(interaction: Interaction, show: bool = True) -> None:
     """Show instructions on how to use the bot.
 
     Args:
         interaction: The interaction that triggered the command.
         show: Whether to show the help message to everyone or just you.
     """
-    embeds = []
+    embeds: list[Embed] = []
 
     def add_section(
         title: str,
@@ -24,7 +24,7 @@ async def help_command(interaction: Interaction, show: bool = True):
         *,
         subsections: Iterable[tuple[str, str]] = (),
         image: str = "",
-    ):
+    ) -> None:
         embed = Embed(
             title=title,
             description=body,
@@ -65,8 +65,7 @@ async def help_command(interaction: Interaction, show: bool = True):
 
     add_section(
         "Bot Configuration",
-        "Customize the bot's behavior by appending `key=value` to the bot's main role's name, separating each key-value pair by a space. Use quotes to surround values that have spaces.\n"
-        'For example to have Linus\' nickname appear as `[#] Linus` you would change the rale `Rolling Tags` to `Rolling Tags fmt="[{t}] {n}"`. Or if you wanted to put a comma between each tag you would change the role to `Rolling Tags sep=,`.\n\n**The following settings are supported.**',
+        "Customize the bot's behavior by appending `key=value` to the bot's main role's name, separating each key-value pair by a space. Use quotes to surround values that have spaces.\nFor example to have Linus' nickname appear as `[#] Linus` you would change the rale `Rolling Tags` to `Rolling Tags fmt=\"[{t}] {n}\"`. Or if you wanted to put a comma between each tag you would change the role to `Rolling Tags sep=,`.\n\n**The following settings are supported.**",
         subsections=(
             (
                 "`sep`",

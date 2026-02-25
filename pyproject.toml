@@ -1,30 +1,97 @@
-[tool.poetry]
+[project]
 name = "rolling-tags"
 version = "2.0.0"
 description = "Add tags to nicknames based on their roles! Rolling Tags Discord Bot will allow you to easily assign tags next to the usernames of members of your server based on what roles they are in."
-authors = ["Abraham Murciano <abraham.murciano@mobileye.com>"]
+authors = [{ name = "Abraham Murciano", email = "abrahammurciano@gmail.com" }]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "rolling_tags" }]
+requires-python = ">=3.14"
+dependencies = [
+	"discord-py>=2.3",
+	"python-dotenv>=1.0",
+	"discord-lumberjack>=1.1.3",
+	"parse>=1.19.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-discord-py = "^2.2"
-python-dotenv = "^1.0"
-discord-lumberjack = "^1.1.3"
-parse = "^1.19.0"
-
-[tool.poetry.group.dev.dependencies]
-black = "*"
-mypy = "*"
-
-[tool.poetry.scripts]
+[project.scripts]
 rolling-tags = "rolling_tags.__main__:main"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["basedpyright>=1.38.1", "black>=0", "mypy>=0", "ruff>=0.15.2"]
 
 [[tool.mypy.overrides]]
 module = ["discord.*", "parse"]
 ignore_missing_imports = true
+
+[tool.basedpyright]
+allowedUntypedLibraries = ["parse", "parse.*"]
+reportUnusedCallResult = "none"
+reportAny = "none"
+reportIncompatibleUnannotatedOverride = "warning"
+reportUnannotatedClassAttribute = "none"
+reportUnusedParameter = "none"
+reportCallInDefaultInitializer = "none"
+reportExplicitAny = "none"
+reportInvalidCast = "none"
+reportUnknownLambdaType = "none"
+reportImportCycles = "hint"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+	"A001",
+	"A002",
+	"ANN401",
+	"C901",
+	"COM812",
+	"D100",
+	"D101",
+	"D102",
+	"D103",
+	"D104",
+	"D105",
+	"D106",
+	"D107",
+	"D203",
+	"D213",
+	"D413",
+	"E501",
+	"EM101",
+	"EM102",
+	"FBT001",
+	"FBT002",
+	"G004",
+	"PLC0415",
+	"PLR0911",
+	"PLR0912",
+	"PLR2004",
+	"PT013",
+	"PYI025",
+	"S101",
+	"S104",
+	"S105",
+	"S311",
+	"S603",
+	"S608",
+	"TC001",
+	"TC002",
+	"TC003",
+	"TC006",
+	"TD002",
+	"TD003",
+	"TRY003",
+	"TRY400",
+]
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint.pylint]
+max-args = 15

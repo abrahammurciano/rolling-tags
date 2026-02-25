@@ -1,8 +1,9 @@
-from dotenv.main import load_dotenv
 import os
-from logging import Logger, DEBUG, ERROR, StreamHandler
+from logging import DEBUG, ERROR, Logger, StreamHandler
+
 from discord_lumberjack.handlers import DiscordChannelHandler
 from discord_lumberjack.message_creators import EmbedMessageCreator
+from dotenv.main import load_dotenv
 
 load_dotenv()
 
@@ -16,7 +17,7 @@ error_channel = (
 )
 
 
-def setup_logger(logger: Logger):
+def setup_logger(logger: Logger) -> None:
     logger.setLevel(DEBUG)
     if debug_channel:
         logger.addHandler(
